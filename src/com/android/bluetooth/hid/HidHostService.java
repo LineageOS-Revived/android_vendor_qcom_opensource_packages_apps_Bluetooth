@@ -184,9 +184,9 @@ public class HidHostService extends ProfileService {
                             Log.d(TAG, "Incoming HID connection rejected");
                         }
                         if (disconnectRemote(device)) {
-                            int connectionPolicy = getConnectionPolicy(device);
+                            int priority = getPriority(device);
                             boolean reconnectAllowed =
-                                    connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED;
+                                    priority == BluetoothProfile.PRIORITY_ON;
                             disconnectHidNative(Utils.getByteAddress(device), reconnectAllowed);
                         } else {
                             virtualUnPlugNative(Utils.getByteAddress(device));
